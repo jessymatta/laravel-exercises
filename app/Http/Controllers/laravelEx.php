@@ -9,7 +9,7 @@ class laravelEx extends Controller
 //-------------------------------------START OF API1-------------------------------------------
 
     //A function that sorts a string according to a specific format. For example: "eA2a1E" becomes "aAeE12"
-    public function sort($input_str)
+    public function sort(string $input_str)
     {
         // Using str_split to convert the input string into an array of its characters
         $pseudo_sorted_array = str_split($input_str);
