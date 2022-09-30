@@ -45,4 +45,27 @@ class laravelEx extends Controller
         $input_str_of_chars = implode($char_arr);
         echo $input_str_of_chars;
     }
+
+
+
+    // Helper function that will group matching consecutive characters while ignoring the case
+    private function groupMatchingConsecutiveChars(string $str)
+    {
+        $array = [];
+        $lastChar = "";
+        $temp = "";
+
+        foreach (str_split($str) as $char) {
+            if (strcasecmp($char, $lastChar) != 0) {
+                unset($temp);
+                $array[] = &$temp;
+                $temp = $char;
+                $lastChar = $char;
+            } else {
+                $temp .= $char;
+            }
+        }
+        // print_r($array);
+        return $array;
+    }
 }
