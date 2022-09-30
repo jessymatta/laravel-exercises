@@ -23,4 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get("api1/{input_str}", [laravelEx::class,'sort']);
 
 //Route for api2 : that recives a number and returns each place value in the number
-Route::get("api2", [laravelEx::class,'placeValue']);
+Route::get("api2/{input_int}", [laravelEx::class,'placeValue']);

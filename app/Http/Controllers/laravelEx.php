@@ -92,11 +92,10 @@ class laravelEx extends Controller
 
 //-------------------------------------START OF API2-------------------------------------------
     //A function that recives a number and returns each place value in the number
-    public function placeValue(){
-        $input_int=-434;
-        //copyting th input, because we want to return it in the response and we will be modifying its value throughout the code
+    public function placeValue(int $input_int){
+        //copying the input, because we want to return it in the response and we will be modifying its value throughout the code
         $input_int_copy=$input_int;
-        //giving an arbitrary value to $remainder, because I couldn't declare the variable without initializing it
+        //giving an arbitrary value to $remainder, because I couldn't declare the variable without initializing it. This value does not mean anything
         $remainder=-999;
         $position=1;
         $iterator=0;
