@@ -44,6 +44,13 @@ class laravelEx extends Controller
         //We are converting the array to a single string by using the method implode()
         $input_str_of_chars = implode($char_arr);
         echo $input_str_of_chars;
+
+        $arr_grouped_chars = $this->groupMatchingConsecutiveChars($input_str_of_chars);
+        print_r($arr_grouped_chars);
+        echo "DONE";
+        echo(gettype($arr_grouped_chars));
+
+
     }
 
 
