@@ -1,4 +1,4 @@
-#Laravel APIs implementation
+# Laravel APIs implementation
 
 This repo implements the following APIs using Laravel:
 * Create an API that receives a string consisting of lowercase letters, uppercase letters and numbers and returns the string sorted (in a JSON object) in the same way as the examples below.
@@ -22,7 +22,7 @@ This repo implements the following APIs using Laravel:
 "* 12 2" ➞ 24
 "+ -10 10" ➞ 0
 
-#Example screenshots of the output:
+# Example screenshots of the output:
 <img src="./images-ss/api1.1.PNG">
 <img src="./images-ss/api1.2.PNG">
 <img src="./images-ss/api2.PNG">
