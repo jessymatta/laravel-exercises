@@ -121,60 +121,50 @@ class laravelEx extends Controller
     {
 
         /*The preg_match_all() function returns the number of matches of a pattern that were found in a string 
-        and populates a variable with the matches that were found. Here a regex expression is used to split the string at the number*/
-        // $input_string = "10hell76o4 boi";
-        // $string = "I have 10 sheeps";
-        // $string="My father was born in 1974.10.25.";
+        and populates a variable with the matches that were found. Here a regex expression is used to split the string at the number, the fisrt part matches the numbers, the second one alphabetical characters with dots and spaces*/
+
         preg_match_all('/([0-9]+|[a-zA-Z \.]+)/', $input_string, $matches);
 
-        // echo gettype($matches[0]);
-
-        $array_split_at_numbers=$matches[0];
-        print_r( $array_split_at_numbers);
-        $str_to_return="";
+        $array_split_at_numbers = $matches[0];
+        $str_to_return = "";
 
         //looping through the $array_split_at_numbers and converting the numbers parts to binary using php's built-in function decbin()
-        foreach($array_split_at_numbers as $word){
+        foreach ($array_split_at_numbers as $word) {
 
-            if(is_numeric($word)){
-                echo $word . "is a number !\n";
-                $str_to_return.=decbin($word);
-
+            if (is_numeric($word)) {
+                $str_to_return .= decbin($word);
+            } else {
+                $str_to_return .= $word;
             }
-            else{
-                echo $word . "NOT is a number !\n";
-                $str_to_return.=$word;
-            }
-            
         }
-        
+
         return response()->json([
             $input_string => $str_to_return
         ]);
     }
 
     //-------------------------------------START OF API4-------------------------------------------
-    public function prefixEvalution($input_str){
+    public function prefixEvalution($input_str)
+    {
 
         //split the inputted string at spaces and assign the result to $array_expression
-        $array_expression = explode(" ",$input_str);
-        $reversed_exp_array=array_reverse($array_expression);
-        $operators_array=["+","-","*","/"];
+        $array_expression = explode(" ", $input_str);
+        $reversed_exp_array = array_reverse($array_expression);
+        $operators_array = ["+", "-", "*", "/"];
 
         //We will be using php's built-in arrays as a Stack, through the array_push() and array_pop() methods
-        $my_stack=[];
+        $my_stack = [];
 
-        foreach($reversed_exp_array as $element){
-            
+        foreach ($reversed_exp_array as $element) {
+
             //Check if the element is an operator, if so pop 2 elements from the stack, evaluate the results, then push the result back to the stack
-            if(in_array( $element, $operators_array)){
-                $operator_1=array_pop($my_stack);
-                $operator_2=array_pop($my_stack);
-                $result=$operator_1.$element.$operator_2;
+            if (in_array($element, $operators_array)) {
+                $operator_1 = array_pop($my_stack);
+                $operator_2 = array_pop($my_stack);
+                $result = $operator_1 . $element . $operator_2;
                 $result_as_integer = eval("return ($result);");
                 array_push($my_stack, $result_as_integer);
-            }
-            else{
+            } else {
                 //if the element is not an operator just push it to the stack
                 array_push($my_stack, $element);
             }
@@ -183,6 +173,5 @@ class laravelEx extends Controller
         return response()->json([
             $input_str => array_pop($my_stack)
         ]);
-
     }
 }
