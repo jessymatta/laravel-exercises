@@ -12,10 +12,10 @@ class laravelEx extends Controller
     public function sort(string $input_str)
     {
         // Using str_split to convert the input string into an array of its characters
-        $pseudo_sorted_array = str_split($input_str);
+        $positionseudo_sorted_array = str_split($input_str);
 
         //Sorting the array consisting of the characters of the input string while ignoring cases
-        sort($pseudo_sorted_array, SORT_NATURAL | SORT_FLAG_CASE);
+        sort($positionseudo_sorted_array, SORT_NATURAL | SORT_FLAG_CASE);
 
         //A string that will consist of the sorted numbers of the input string
         $number_part_str = "";
@@ -24,13 +24,13 @@ class laravelEx extends Controller
         $i = 0;
 
         //In the while loop we are checking for the characters that are integers and adding them to our $number_part_str
-        while ($i < count($pseudo_sorted_array) && is_numeric($pseudo_sorted_array[$i])) {
-            $number_part_str = $number_part_str . $pseudo_sorted_array[$i];
+        while ($i < count($positionseudo_sorted_array) && is_numeric($positionseudo_sorted_array[$i])) {
+            $number_part_str = $number_part_str . $positionseudo_sorted_array[$i];
             $i++;
         }
 
         //at $i we have our first non numeric character so we are slicing the array to sort the characters according to the required format
-        $char_arr = array_slice($pseudo_sorted_array, $i);
+        $char_arr = array_slice($positionseudo_sorted_array, $i);
 
         //We are converting the array to a single string by using the method implode()
         $input_str_of_chars = implode($char_arr);
@@ -93,6 +93,26 @@ class laravelEx extends Controller
 //-------------------------------------START OF API2-------------------------------------------
     //A function that recives a number and returns each place value in the number
     public function placeValue(){
-        
+        $input_int=-434;
+        //copyting th input, because we want to return it in the response and we will be modifying its value throughout the code
+        $input_int_copy=$input_int;
+        //giving an arbitrary value to $remainder, because I couldn't declare the variable without initializing it
+        $remainder=-999;
+        $position=1;
+        $iterator=0;
+        $array_to_return=[];
+
+        while($input_int_copy!=0){
+            $remainder=$input_int_copy %10;
+            $position= pow(10,$iterator++);
+            array_push($array_to_return, $remainder*$position);
+            $input_int_copy=intdiv($input_int_copy, 10);
+        }
+
+        //we are reversing the array to have the exact format that is required, "39" -> [30, 9] not [9, 30]
+        return response()->json([
+            $input_int => array_reverse($array_to_return)
+        ]);
+
     }
 }
