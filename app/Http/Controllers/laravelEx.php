@@ -152,4 +152,7 @@ class laravelEx extends Controller
             $input_string => $str_to_return
         ]);
     }
+
+    //-------------------------------------START OF API4-------------------------------------------
+    
 }
