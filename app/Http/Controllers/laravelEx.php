@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 class laravelEx extends Controller
 {
+//-------------------------------------START OF API1-------------------------------------------
 
+    //A function that sorts a string according to a specific format. For example: "eA2a1E" becomes "aAeE12"
     public function sort($input_str)
     {
         // Using str_split to convert the input string into an array of its characters
@@ -86,5 +88,11 @@ class laravelEx extends Controller
 
         //converting the array back to a string by using implode() and returning it
         return  implode($sort);
+    }
+
+//-------------------------------------START OF API2-------------------------------------------
+    //A function that recives a number and returns each place value in the number
+    public function placeValue(){
+        
     }
 }
