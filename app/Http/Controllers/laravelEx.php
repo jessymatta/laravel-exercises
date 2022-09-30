@@ -166,7 +166,7 @@ class laravelEx extends Controller
 
         foreach($reversed_exp_array as $element){
             
-            //Check if the element is an operator
+            //Check if the element is an operator, if so pop 2 elements from the stack, evaluate the results, then push the result back to the stack
             if(in_array( $element, $operators_array)){
                 $operator_1=array_pop($my_stack);
                 $operator_2=array_pop($my_stack);
@@ -175,11 +175,14 @@ class laravelEx extends Controller
                 array_push($my_stack, $result_as_integer);
             }
             else{
+                //if the element is not an operator just push it to the stack
                 array_push($my_stack, $element);
             }
         }
-
-        echo "\n \n \n\n\n\n DONE? ".array_pop($my_stack);
+        //returning the last element in the stack as it will be equal to the evaluation of the expression
+        return response()->json([
+            $input_str => array_pop($my_stack)
+        ]);
 
     }
 }
