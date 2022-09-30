@@ -158,10 +158,7 @@ class laravelEx extends Controller
 
         //split the inputted string at spaces and assign the result to $array_expression
         $array_expression = explode(" ",$input_str);
-        print_r($array_expression);
         $reversed_exp_array=array_reverse($array_expression);
-        print_r($reversed_exp_array);
-
         $operators_array=["+","-","*","/"];
 
         //We will be using php's built-in arrays as a Stack, through the array_push() and array_pop() methods
@@ -172,20 +169,14 @@ class laravelEx extends Controller
             //Check if the element is an operator
             if(in_array( $element, $operators_array)){
                 $operator_1=array_pop($my_stack);
-                echo "\n-----b2--- ".$operator_1."-----\n";
                 $operator_2=array_pop($my_stack);
-                echo "\n-----b--- ".$operator_2."-----\n";
                 $result=$operator_1.$element.$operator_2;
-                echo"\n RESULTS == ".$result."\n";
                 $result_as_integer = eval("return ($result);");
-                echo "\n  $result_as_integer ------\n\n";
-                echo $result_as_integer;
                 array_push($my_stack, $result_as_integer);
             }
             else{
                 array_push($my_stack, $element);
             }
-
         }
 
         echo "\n \n \n\n\n\n DONE? ".array_pop($my_stack);
