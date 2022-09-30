@@ -125,7 +125,7 @@ class laravelEx extends Controller
         // $input_string = "10hell76o4 boi";
         // $string = "I have 10 sheeps";
         // $string="My father was born in 1974.10.25.";
-        preg_match_all('/([0-9]+|[a-zA-Z]+)/', $input_string, $matches);
+        preg_match_all('/([0-9]+|[a-zA-Z \.]+)/', $input_string, $matches);
 
         // echo gettype($matches[0]);
 
@@ -138,12 +138,12 @@ class laravelEx extends Controller
 
             if(is_numeric($word)){
                 echo $word . "is a number !\n";
-                $str_to_return.=decbin($word)." ";
+                $str_to_return.=decbin($word);
 
             }
             else{
                 echo $word . "NOT is a number !\n";
-                $str_to_return.=$word." ";
+                $str_to_return.=$word;
             }
             
         }
