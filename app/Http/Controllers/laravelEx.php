@@ -18,7 +18,7 @@ class laravelEx extends Controller
         //Sorting the array consisting of the characters of the input string while ignoring cases
         sort($pseudo_sorted_array, SORT_NATURAL | SORT_FLAG_CASE);
 
-        //Astring that will consist of the sorted numbers of the input string
+        //A string that will consist of the sorted numbers of the input string
         $number_part_str = "";
 
         //i is a variable; it is initialized outside the outside loop because we are going to use its value after the while loop
@@ -49,6 +49,24 @@ class laravelEx extends Controller
         print_r($arr_grouped_chars);
         echo "DONE";
         echo (gettype($arr_grouped_chars));
+
+        //Final string that contains all characters sorted according to the required format
+        $str_chars_final = "";
+        //Reversing all elements of the arr_grouped_char array and concatinating the outputs to the str_chars_final
+        foreach ($arr_grouped_chars as $grouped_str) {
+            echo "\n" . $grouped_str . " -----------------\n ";
+            $new_str = $this->reverseSortString($grouped_str);
+            echo "NEWSTR== " . $new_str;
+            $str_chars_final .= $new_str;
+        }
+
+        echo "\n\n\n" . $str_chars_final . "\n\n\n";
+        $final_sorted_str = $str_chars_final . $number_part_str;
+
+        //Returning the results in the required JSON format
+        return response()->json([
+            "$input_str" => "$final_sorted_str"
+        ]);
     }
 
 
