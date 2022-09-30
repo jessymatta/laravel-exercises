@@ -29,4 +29,4 @@ Route::get("api2/{input_int}", [laravelEx::class,'placeValue']);
 Route::get("api3/{input_string}", [laravelEx::class,'convertToBinary']);
 
 //Route for api4 : that evaluate prefix notations
-Route::get("api4", [laravelEx::class,'prefixEvalution']);
+Route::get("api4/{input_str}", [laravelEx::class,'prefixEvalution']);
