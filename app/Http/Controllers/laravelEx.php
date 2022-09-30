@@ -116,6 +116,9 @@ class laravelEx extends Controller
     }
 
 //-------------------------------------START OF API3-------------------------------------------
-
+    //A function that replaces the numbers in a string with their binary form.
+    public function convertToBinary(){
+        
+    }
 
 }
