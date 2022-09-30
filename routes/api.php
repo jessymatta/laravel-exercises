@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Route for api1 : that sorts a string according to a specific format
-Route::get("api1", [laravelEx::class,'sort']);
+Route::get("api1/{input_str}", [laravelEx::class,'sort']);

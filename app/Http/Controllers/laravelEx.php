@@ -7,11 +7,8 @@ use Illuminate\Http\Request;
 class laravelEx extends Controller
 {
 
-    public function sort()
+    public function sort($input_str)
     {
-        // $input_str = '16E7AeB2ce6880aA9a';
-        $input_str = '846ZIbo';
-
         // Using str_split to convert the input string into an array of its characters
         $pseudo_sorted_array = str_split($input_str);
 
