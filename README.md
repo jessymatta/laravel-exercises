@@ -23,8 +23,8 @@ This repo implements the following APIs using Laravel:
 "+ -10 10" ➞ 0
 
 #Example screenshots of the output:
-<img src="./images-ss/api1.1" width=700 height=400>
-<img src="./images-ss/api1.2" width=700 height=400>
-<img src="./images-ss/api2" width=700 height=400>
-<img src="./images-ss/api3" width=700 height=400>
-<img src="./images-ss/api4" width=700 height=400>
+<img src="./images-ss/api1.1.PNG">
+<img src="./images-ss/api1.2.PNG">
+<img src="./images-ss/api2.PNG">
+<img src="./images-ss/api3.PNG">
+<img src="./images-ss/api4.PNG">
