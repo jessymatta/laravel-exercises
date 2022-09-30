@@ -91,7 +91,7 @@ class laravelEx extends Controller
     }
 
 //-------------------------------------START OF API2-------------------------------------------
-    //A function that recives a number and returns each place value in the number
+    //A function that receives a number and returns each place value in the number
     public function placeValue(int $input_int){
         //copying the input, because we want to return it in the response and we will be modifying its value throughout the code
         $input_int_copy=$input_int;
@@ -114,4 +114,8 @@ class laravelEx extends Controller
         ]);
 
     }
+
+//-------------------------------------START OF API3-------------------------------------------
+
+
 }
