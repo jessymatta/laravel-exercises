@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class laravelEx extends Controller
 {
-//-------------------------------------START OF API1-------------------------------------------
+    //-------------------------------------START OF API1-------------------------------------------
 
     //A function that sorts a string according to a specific format. For example: "eA2a1E" becomes "aAeE12"
     public function sort(string $input_str)
@@ -90,35 +90,66 @@ class laravelEx extends Controller
         return  implode($sort);
     }
 
-//-------------------------------------START OF API2-------------------------------------------
+    //-------------------------------------START OF API2-------------------------------------------
     //A function that receives a number and returns each place value in the number
-    public function placeValue(int $input_int){
+    public function placeValue(int $input_int)
+    {
         //copying the input, because we want to return it in the response and we will be modifying its value throughout the code
-        $input_int_copy=$input_int;
+        $input_int_copy = $input_int;
         //giving an arbitrary value to $remainder, because I couldn't declare the variable without initializing it. This value does not mean anything
-        $remainder=-999;
-        $position=1;
-        $iterator=0;
-        $array_to_return=[];
+        $remainder = -999;
+        $position = 1;
+        $iterator = 0;
+        $array_to_return = [];
 
-        while($input_int_copy!=0){
-            $remainder=$input_int_copy %10;
-            $position= pow(10,$iterator++);
-            array_push($array_to_return, $remainder*$position);
-            $input_int_copy=intdiv($input_int_copy, 10);
+        while ($input_int_copy != 0) {
+            $remainder = $input_int_copy % 10;
+            $position = pow(10, $iterator++);
+            array_push($array_to_return, $remainder * $position);
+            $input_int_copy = intdiv($input_int_copy, 10);
         }
 
         //we are reversing the array to have the exact format that is required, "39" -> [30, 9] not [9, 30]
         return response()->json([
             $input_int => array_reverse($array_to_return)
         ]);
-
     }
 
-//-------------------------------------START OF API3-------------------------------------------
+    //-------------------------------------START OF API3-------------------------------------------
     //A function that replaces the numbers in a string with their binary form.
-    public function convertToBinary(){
-        
-    }
+    public function convertToBinary(string $input_string)
+    {
 
+        /*The preg_match_all() function returns the number of matches of a pattern that were found in a string 
+        and populates a variable with the matches that were found. Here a regex expression is used to split the string at the number*/
+        // $input_string = "10hell76o4 boi";
+        // $string = "I have 10 sheeps";
+        // $string="My father was born in 1974.10.25.";
+        preg_match_all('/([0-9]+|[a-zA-Z]+)/', $input_string, $matches);
+
+        // echo gettype($matches[0]);
+
+        $array_split_at_numbers=$matches[0];
+        print_r( $array_split_at_numbers);
+        $str_to_return="";
+
+        //looping through the $array_split_at_numbers and converting the numbers parts to binary using php's built-in function decbin()
+        foreach($array_split_at_numbers as $word){
+
+            if(is_numeric($word)){
+                echo $word . "is a number !\n";
+                $str_to_return.=decbin($word)." ";
+
+            }
+            else{
+                echo $word . "NOT is a number !\n";
+                $str_to_return.=$word." ";
+            }
+            
+        }
+        
+        return response()->json([
+            $input_string => $str_to_return
+        ]);
+    }
 }

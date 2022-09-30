@@ -26,4 +26,4 @@ Route::get("api1/{input_str}", [laravelEx::class,'sort']);
 Route::get("api2/{input_int}", [laravelEx::class,'placeValue']);
 
 //Route for api3 : that replaces the numbers in a string with their binary form.
-Route::get("api3", [laravelEx::class,'convertToBinary']);
+Route::get("api3/{input_string}", [laravelEx::class,'convertToBinary']);
