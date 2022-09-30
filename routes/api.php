@@ -18,3 +18,6 @@ use App\Http\Controllers\laravelEx;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Route for api1 : that sorts a string according to a specific format
+Route::get("api1", [laravelEx::class,'sort']);
