@@ -48,9 +48,7 @@ class laravelEx extends Controller
         $arr_grouped_chars = $this->groupMatchingConsecutiveChars($input_str_of_chars);
         print_r($arr_grouped_chars);
         echo "DONE";
-        echo(gettype($arr_grouped_chars));
-
-
+        echo (gettype($arr_grouped_chars));
     }
 
 
@@ -74,5 +72,22 @@ class laravelEx extends Controller
         }
         // print_r($array);
         return $array;
+    }
+
+
+    // Helper function that will take a string and reverve it sorting, this way according to the ASCII code we will have the capitalized letters after the lowercase ones
+    private function reverseSortString(string $str)
+    {
+        // $str="AaaA";
+        // Using str_split to convert string to an array
+        $sort = str_split($str);
+
+        //Reverse sorting the array, as mentioned in the function's description
+        rsort($sort);
+        print_r($sort);
+
+        //converting the array back to a string by using implode()
+        echo implode($sort);
+        return  implode($sort);
     }
 }
