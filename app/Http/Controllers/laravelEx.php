@@ -26,41 +26,26 @@ class laravelEx extends Controller
 
         //In the while loop we are checking for the characters that are integers and adding them to our $number_part_str
         while ($i < count($pseudo_sorted_array) && is_numeric($pseudo_sorted_array[$i])) {
-            echo $pseudo_sorted_array[$i] . "is a numberrr \n ";
             $number_part_str = $number_part_str . $pseudo_sorted_array[$i];
             $i++;
         }
 
-
-        echo $number_part_str, "\n";
-        echo "index of the first letter  " . $i . "\n";
-
-        echo "COUNT " . count($pseudo_sorted_array) . "\n";
-
         //at $i we have our first non numeric character so we are slicing the array to sort the characters according to the required format
         $char_arr = array_slice($pseudo_sorted_array, $i);
-        print_r($char_arr);
 
         //We are converting the array to a single string by using the method implode()
         $input_str_of_chars = implode($char_arr);
-        echo $input_str_of_chars;
 
         $arr_grouped_chars = $this->groupMatchingConsecutiveChars($input_str_of_chars);
-        print_r($arr_grouped_chars);
-        echo "DONE";
-        echo (gettype($arr_grouped_chars));
 
         //Final string that contains all characters sorted according to the required format
         $str_chars_final = "";
         //Reversing all elements of the arr_grouped_char array and concatinating the outputs to the str_chars_final
         foreach ($arr_grouped_chars as $grouped_str) {
-            echo "\n" . $grouped_str . " -----------------\n ";
             $new_str = $this->reverseSortString($grouped_str);
-            echo "NEWSTR== " . $new_str;
             $str_chars_final .= $new_str;
         }
 
-        echo "\n\n\n" . $str_chars_final . "\n\n\n";
         $final_sorted_str = $str_chars_final . $number_part_str;
 
         //Returning the results in the required JSON format
@@ -88,7 +73,6 @@ class laravelEx extends Controller
                 $temp .= $char;
             }
         }
-        // print_r($array);
         return $array;
     }
 
@@ -96,16 +80,14 @@ class laravelEx extends Controller
     // Helper function that will take a string and reverve it sorting, this way according to the ASCII code we will have the capitalized letters after the lowercase ones
     private function reverseSortString(string $str)
     {
-        // $str="AaaA";
+
         // Using str_split to convert string to an array
         $sort = str_split($str);
 
         //Reverse sorting the array, as mentioned in the function's description
         rsort($sort);
-        print_r($sort);
 
-        //converting the array back to a string by using implode()
-        echo implode($sort);
+        //converting the array back to a string by using implode() and returning it
         return  implode($sort);
     }
 }
